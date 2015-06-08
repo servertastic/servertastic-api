@@ -500,7 +500,7 @@ The approverlist call allows you to retrieve all acceptable domain approver emai
 
 **`approverlist` order request**
 
-https://api.servertastic.com/ssl/order/approverlist?api_key=[Reseller API key]&domain_name=[The domain name you want approvers for]
+`https://api.servertastic.com/ssl/order/approverlist?api_key=[Reseller API key]&domain_name=[The domain name you want approvers for]`
 
 **`approverlist` order response**
 
@@ -533,7 +533,7 @@ This call allows users to initiate an authentication check for domain validated 
 
 **`pollAuth` request**
 
-https://api.servertastic.com/ssl/order/pollauth?api_key=[Your API Key]&reseller_order_id=[Reseller Order ID]
+`https://api.servertastic.com/ssl/order/pollauth?api_key=[Your API Key]&reseller_order_id=[Reseller Order ID]`
 
 **Using `order_token`**
 
