@@ -1,7 +1,5 @@
 #Servertastic Reseller API Documentation
 
-Created using Markdown and available via GitHub
-
 * [Reseller Dashboard](https://reseller.servertastic.com)
 * [Servertastic Support](https://support.servertastic.com)
 * <resellers@servertastic.com>
@@ -16,6 +14,30 @@ resellers to place, review and manage their orders.
 * [Using the API](#using-the-api)
 	* [Returned Data](#returned-data)
 	* [Success and Errors](#success-and-errors)
+	* [Test Environment](#test-environment)
+	* [Example Usage](#example-usage)
+	* [Invite Routine](#invite-routine)
+* [Order Web Service Details](#order-web-service-details)
+	* [`place`](#place)
+	* [`review`](#review)
+	* [`cancel`](#cancel)
+	* [`resendemail`](#resendemail)
+	* [`changeapproveremail`](#changeapproveremail)
+	* [`modifiedorders`](#modifiedorders)
+	* [`expiring`](#expiring)
+	* [`approverlist`](#approverlist)
+	* [`changeAuth`](#changeAuth)
+	* [`pollauth`](#pollauth)
+	* [`generateToken`](#generatetoken)
+	* [`showTokens`](#showtokens)
+* [ResellerAccount Web Service Details](#reselleraccount-web-service-details)
+	* [`regenerateapikey`](#regenerateapikey)
+	* [`review`](#review)
+	* [`addtestpoints`](#addtestpoints)
+	* [`emptytestpoints`](#emptytestpoints)
+* [Product Web Service Details](#product-web-service-details)
+	* [`listproduct`](#listproduct)
+* [Further Field Definitions](#further-field-definitions)
 
 ##Overview
 We offer a series of simple API calls that allow resellers to place, modify and review orders by constructing a URL that contains a number of parameters that allow Servertastic to return relevant information or perform an action on the resellers behalf. The returned information can be displayed as XML (default) or JSON.
@@ -97,12 +119,12 @@ As a reseller you can set the Invite Styles via the reseller dashboard. This inc
 
 ##Order Web Service Details
 
-###place
+###`place`
 The `place` call allows an order to be placed, upon successful completion the returned XML shows the unique Servertastic order number along with the invite URL from the certificate provider or product licenses. This section is broken down into SSL and SmarterTools orders as different parameters are required and the response from the API varies.
 
 This API call now supports both the `POST` and `GET` method. This was added in order for resellers to submit the csr for an order.
 
-###SSL Products
+####SSL Products
 When placing an order with the API, the order will perform an invite routine or bypass this step and place the order with the CA and jump straight to the domain approver email stage. The field that triggers an order instead of an invite is the `approver_email_address`, if this is set then the `technical`, `administration` and `csr` (either generated or provided) need to be provided. This only currently works for Domain Validated products.
 
 If your order uses the invite process and you do not want the invite email to be sent to the end customer then set the `end_customer_email` to `none`. If an email is provided for the end customer, then they will receive an email from certificate provider containing the Invite link if the order is in the invite process. The `reseller_unique_reference` can be any string but it must not have been previously used by the reseller, it uniquely identifies the order with the certificate provider and prevents multiple ordering in the event of a problem. 
@@ -115,7 +137,7 @@ Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE`
                                         
 `s<randomstring>.domain.com` (randomstring is returned in the API response) and pointed to a timestamped entry in the format `s<YYYYMMddHHmmss>.domain.com` where the timestamp is the current time and date.
 
-**place order request**
+**`place` order request**
 
 `https://api.servertastic.com/ssl/order/place?st_product_code=[Product Code]&api_key=[Reseller API Key]&end_customer_email=[Email address|’none’]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
 
@@ -125,7 +147,7 @@ Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE`
 
 For full field information see [Fields](#fields)
 
-**place order response**
+**`place` order response**
 
 ~~~xml
 <?xml version="1.0"?>
@@ -141,7 +163,7 @@ For full field information see [Fields](#fields)
 </response>
 ~~~
 	
-####Fields
+###Fields
 
 Field Name | Required | Further Information
 :--|:--|:--
@@ -175,16 +197,16 @@ Field Name | Required | Further Information
 `hashing_algorithm` | Optional. | Expected values `SHA1` and `SHA2-256 `(default)
 `order_token` | Optional | If set the order will be placed using the product code specified when the token was generated.
 
-###SmarterTools Products
+####SmarterTools Products
 The place call for the SmarterTools products works in the same was as for the SSL products above but the information that is required varies slightly. For example many of the fields aren’t required and an end customer email address must be specified. Please note a bundle can only ever be assigned to an email address once, across the SmarterTools system.
 
 Before using these API calls Resellers must login to the web interface at <https://reseller.servertastic.com> and activate the product group by accepting the Terms and Conditions.
 
-**place order request**
+**`place` order request**
 
 `https://api.servertastic.com/smartertools/order/place?st_product_code=[Product Code]&api_key=[Reseller API Key]&end_customer_email=[Email address that the bundle is assigned to]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
 
-**place order response**
+**`place` order response**
 
 The response details license information for the Bundle or product which can be retrieved at a later date using the review call. In addition to this an account password will be shown if the user is a new SmarterTools customer but left blank if they are one already. This information is not stored by Servertastic for security purposes.
 
@@ -201,12 +223,12 @@ The response details license information for the Bundle or product which can be 
 	  </order_licenses>
 	</response>
 
-###review
+###`review`
 The review call shows the status and all information that is currently available for an order. The call interrogates the Servertastic database that is updated every five minutes. This may mean that the information presented could be up to five minutes old.
 
 ####SSL Orders
 
-**review order request**
+**`review` order request**
 
 `https://api.servertastic.com/ssl/order/review?api_key=[Reseller API key]&reseller_order_id=[Reseller Order ID]`
 
@@ -214,7 +236,7 @@ The review call shows the status and all information that is currently available
 
 `https://api.servertastic.com/ssl/order/review?order_token=[current order_token]`
 
-**review order response**
+**`review` order response**
 
 Depending on the stage of the order, some information may be blank.
 
@@ -293,13 +315,13 @@ Cancelled | The order was cancelled either by the reseller, domain approver or t
 Roll Back | There was a problem placing the order in the Servertastic systems, the order needs to be placed again.
 Servertastic Review | The order has been flagged for review by Servertastic and the points will not be released until the issue has been resolved.
 
-###SmarterTools Orders
+####SmarterTools Orders
 
-**review order request**
+**`review` order request**
 
 `https://api.servertastic.com/smartertools/order/review?api_key=[Reseller API key]&reseller_order_id=[Reseller Order ID]`
 
-**review order response**
+**`review` order response**
 
 	<?xml version="1.0"?>
 	<response>
@@ -316,7 +338,7 @@ Servertastic Review | The order has been flagged for review by Servertastic and 
 	  </order_licenses>
 	 </response>
  
-####cancel
+###`cancel`
  
 This call cancels an order that is placed by a reseller and reinstates the points used for that order. Orders can only be cancelled prior to domain approval and this call cannot be used at all on SmarterTools orders.
 
@@ -331,7 +353,7 @@ This call cancels an order that is placed by a reseller and reinstates the point
 	  <success>Order cancelled - [order number]</success>
 	</response>
 	
-####resendemail
+###`resendemail`
 
 This call requests for the emails that have been sent to the end customers throughout the order process to be resent.  This call cannot be used at all on SmarterTools orders.
 
@@ -358,7 +380,9 @@ This call requests for the emails that have been sent to the end customers throu
 	  </email_sent_to>
 	</response>
 
-####`changeapproveremail` request
+###`changeapproveremail`
+
+This call is used to change the approveremail that can be used to complete domain validated orders. See [`approverlist`](#approverlist)
 
 `https://api.servertastic.com/ssl/order/changeapproveremail?api_key=[Your API Key]&reseller_order_id=[Reseller Order ID]&email=[New domain approver email address]`
 
@@ -374,7 +398,7 @@ This call requests for the emails that have been sent to the end customers throu
 	  <success>Change Approver Email Reset</success>
 	</response>
 	
-####`modifiedorders`
+###`modifiedorders`
 
 This call returns details of orders that have been modified since a given date. Due to the fact that the Servertastic information is updated every 5 minutes it is possible that we do not possess all information up to the specified time. As a result an extra piece of information is returned, ‘data_accuracy’, which will tell you the timestamp of the last modification in the Servertastic system for the returned data. If you are running this call in a script, please store this information and use it to make any subsequent calls. Please note, the date/time is GMT.
 
@@ -441,18 +465,18 @@ This call returns details of orders that have been modified since a given date. 
 	<data_accuracy></data_accuracy>
 	</response>
 	
-####`expiring`
+###`expiring`
 
 The expiring call allows you to return all orders expiring with a specified time period. If the domain has had the same product purchased for it that expires after the original the record won’t be returned.
 
-**SSL Orders**
+####SSL Orders
 
-**expiring order request**
+**`expiring` order request**
 
 `https://api.servertastic.com/ssl/order/expiring?api_key=[Reseller API key]&days=[Expiring time period. Defaults to 60]
 `
 
-**expiring order response**
+**`expiring` order response**
 
 	<?xml version="1.0"?>
 	<response>
@@ -470,7 +494,7 @@ The expiring call allows you to return all orders expiring with a specified time
 	   </orders>
 	</response>
 	
-**approverlist**
+###`approverlist`
 
 The approverlist call allows you to retrieve all acceptable domain approver email addresses for the specified domain name
 
@@ -488,7 +512,7 @@ https://api.servertastic.com/ssl/order/approverlist?api_key=[Reseller API key]&d
 	   </approver_email>
 	</response>
 
-**`changeAuth` Method**
+###`changeAuth`
 
 This call allows orders for domain validated products, that have either FILE or DNS authentication set, to change the authentication method back to Email.
 
@@ -503,7 +527,7 @@ This call allows orders for domain validated products, that have either FILE or 
 	  <success>DV Auth Method Updated</success>
 	</response>
 
-**`pollAuth` Method**
+###`pollAuth`
 
 This call allows users to initiate an authentication check for domain validated products, that have either FILE or DNS authentication set. This should be ran after the file has been uploaded or the DNS records created.
 
@@ -523,7 +547,7 @@ https://api.servertastic.com/ssl/order/pollauth?api_key=[Your API Key]&reseller_
 	  <status></status>*If FILE Auth
 	</response>
 	
-####`generateToken`
+###`generateToken`
 
 This call allows resellers to generate an order token that can be used to place or take actions on an order instead of the API key. This is particularly useful for control panel integration
 
@@ -540,7 +564,7 @@ This call allows resellers to generate an order token that can be used to place 
 	  <product_code></product_code>
 	</response>
 	
-**`showTokens`**
+###`showTokens`
 
 This call allows resellers to keep track of tokens that have been generated and which ones have been used.
 
@@ -567,9 +591,9 @@ This call allows resellers to keep track of tokens that have been generated and 
 	  </unused_tokens>
 	</response>
 	
-###ResellerAccount Web Service Details
+##ResellerAccount Web Service Details
 
-**`regenerateapikey`**
+###`regenerateapikey`
 
 This call allows a reseller to regenerate their API key.
 
@@ -645,11 +669,11 @@ This call allows resellers to add points to their account in order to aid testin
 
 This call allows resellers to set their point level to 0 for their account in order to aid testing. This call will only work within the test environment.
 
-**`addtestpoints` request**
+**`emptytestpoints` request**
 
 `https://test-api.servertastic.com/ssl/reselleraccount/emptytestpoints?api_key=[Your API Key]`
 
-**`addtestpoints` response**
+**`emptytestpoints` response**
 
 	<?xml version="1.0"?>
 	<response>
@@ -657,9 +681,9 @@ This call allows resellers to set their point level to 0 for their account in or
 	  <new_total>0</new_total>
 	</response>
 	
-###Product Web Service Details
+##Product Web Service Details
 
-####`listproduct`
+###`listproduct`
 
 This call returns all the products available through the reseller system, along with associated information such as price and SAN count. If a 
 
@@ -685,11 +709,9 @@ This call returns all the products available through the reseller system, along 
 	  </products>
 	</response>
 	
-###Further Field Definitions
+##Further Field Definitions
 
-####Product Codes
-
-####RapidSSL
+###RapidSSL
 
 Product Code | Product Description | Server Count Values | SAN Values
 :--|:--|:--|:--
@@ -700,7 +722,7 @@ Product Code | Product Description | Server Count Values | SAN Values
 `RapidSSLWildcard-24` | RapidSSL Wildcard - 2 Years | Not Applicable | Not Applicable
 `RapidSSLWildcard-36` | RapidSSL Wildcard - 3 Years | Not Applicable | Not Applicable
 
-####Geotrust
+###Geotrust
 
 Product Code | Product Description | Server Count Values | SAN Values
 :--|:--|:--|:--
@@ -732,7 +754,7 @@ Product Code | Product Description | Server Count Values | SAN Values
 - When purchasing a TrueBizID Multidomain product the price includes the first four SANs.
 - When purchasing a QuickSSL Premium Multi Domain the price includes 4 SANs.
 
-####Symantec
+###Symantec
 
 Product Code | Product Description | Server Count Values | SAN Values
 :--|:--|:--|:--
@@ -750,7 +772,7 @@ Product Code | Product Description | Server Count Values | SAN Values
 `SymantecSafeSite-24` | Symantec Safe Site - 2 Years | Not Applicable | Not Applicable
 `SymantecSafeSite-36` | Symantec Safe Site - 3 Years | Not Applicable | Not Applicable
 
-####Thawte
+###Thawte
 
 Product Code | Product Description | Server Count Values | SAN Values
 :--|:--|:--|:--
@@ -765,14 +787,14 @@ Product Code | Product Description | Server Count Values | SAN Values
 `SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable
 `SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable
 
-####SmarterTools Bundle
+###SmarterTools Bundle
 
 Product Code | Product Description
 :--|:--
 `SmarterBundle` | SmarterTools Bundle Pack
 
 
-####SmarterTools SmarterMail
+###SmarterTools SmarterMail
 
 Product Code | Product Description
 :--|:--
@@ -787,7 +809,7 @@ Product Code | Product Description
 `SmarterMailEnt-2000` | SmarterMail Ent - 2000 Mailboxes
 `SmarterMailEnt-Unlimited` | SmarterMail Ent - Unlimited Mailboxes
 
-####SmarterTools SmarterStats
+###SmarterTools SmarterStats
 
 Product Code | Product Description
 :--|:--
@@ -804,7 +826,7 @@ Product Code | Product Description
 `SmarterStatsEnt-20000` | SmarterStats Ent - 20000 Sites
 `SmarterStatsEnt30000` | SmarterStats Ent - 300000 Sites
 
-####SmarterTools SmarterTrack
+###SmarterTools SmarterTrack
 
 Product Code | Product Description
 :--|:--
@@ -829,7 +851,7 @@ Product Code | Product Description
 `SmarterTrackEnt-900` | SmarterTrack Ent - 900 Agents
 `SmarterTrackEnt-1000` | SmarterTrack Ent - 1000 Agents
 
-####SmarterTools Support
+###SmarterTools Support
 
 Product Code | Product Description
 :--|:--
