@@ -32,7 +32,7 @@ resellers to place, review and manage their orders.
 	* [`showTokens`](#showtokens)
 * [ResellerAccount Web Service Details](#reselleraccount-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
-	* [`review`](#review)
+	* [`review`](#reselleraccount-review)
 	* [`addtestpoints`](#addtestpoints)
 	* [`emptytestpoints`](#emptytestpoints)
 * [Product Web Service Details](#product-web-service-details)
@@ -609,7 +609,7 @@ This call allows a reseller to regenerate their API key.
 	  <api_key></api_key>
 	</response>
 	
-###`review`
+###`review`<a name="reselleraccount-review"></a>
 
 This call returns information about the reseller associated with the provided API key, including the number of points that are available to spend and the details of each order that is currently in the Servertastic system.
 
