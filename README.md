@@ -115,7 +115,7 @@ When placing an order an invite link is generated. This link can be used to eith
 
 As a reseller you can set the Invite Styles via the reseller dashboard. This includes adding a logo and setting a colour scheme.
 
-![Invite Styles](images/invitestyles.jpeg)
+![Invite Styles](https://raw.githubusercontent.com/servertastic/servertastic-api/master/images/invitestyles.jpeg)
 
 ##Order Web Service Details
 
