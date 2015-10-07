@@ -179,11 +179,25 @@ Field Name | Required | Further Information
 `tech_contact_phone` | Optional but required if `approver_email_address` is defined
 `tech_contact_email` | Optional but required if `approver_email_address` is defined
 `tech_contact_title` | Optional but required if `approver_email_address` is defined
+`tech_contact_organisation_name` | Required for Symantec Certificates
+`tech_contact_address_line1` | Required for Symantec Certificates
+`tech_contact_address_line2` | Optional for Symantec Certificates
+`tech_contact_address_city` | Required for Symantec Certificates
+`tech_contact_address_region` | Required for Symantec Certificates
+`tech_contact_address_post_code` | Required for Symantec Certificates
+`tech_contact_address_country` | Required for Symantec Certificates
 `admin_contact_first_name` | Optional but required if `approver_email_address` is defined
 `admin_contact_last_name` | Optional but required if `approver_email_address` is defined
 `admin_contact_phone` | Optional but required if `approver_email_address` is defined
 `admin_contact_email` | Optional but required if `approver_email_address` is defined
 `admin_contact_title` | Optional but required if `approver_email_address` is defined
+`admin_contact_organisation_name` | Required for Symantec Certificates
+`admin_contact_address_line1` | Required for Symantec Certificates
+`admin_contact_address_line2` | Optional for Symantec Certificates
+`admin_contact_address_city` | Required for Symantec Certificates
+`admin_contact_address_region` | Required for Symantec Certificates
+`admin_contact_address_post_code` | Required for Symantec Certificates
+`admin_contact_address_country` | Required for Symantec Certificates
 `org_name` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `org_division` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `org_address_city` | Optional but required if `approver_email_address` is defined but the csr field isn’t
