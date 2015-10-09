@@ -173,6 +173,7 @@ Field Name | Required | Further Information
 `reseller_unique_reference` | Required but may be set by `order_token` | 35 character limit
 `server_count` | Required for some products
 `san_count` | Required for some products
+`WebServerType` | Required for Symantec Certificates | Accepted values `Other` or `IIS`
 `approver_email_address` | Optional | If defined order will be placed bypassing invite routine
 `tech_contact_first_name` | Optional but required if `approver_email_address` is defined
 `tech_contact_last_name` | Optional but required if `approver_email_address` is defined
