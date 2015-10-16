@@ -1,8 +1,8 @@
 #Servertastic Reseller API Documentation
 
+* [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
 * [Servertastic Support](https://support.servertastic.com)
-* <resellers@servertastic.com>
 
 ##Target Audience
 The target audience for this document are Servertastic resellers, or
