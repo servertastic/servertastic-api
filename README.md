@@ -209,7 +209,7 @@ Field Name | Required | Further Information
 `renewal` | Optional. | You can set if this order is a renewal `1` or `0`
 `competitive_upgrade` | Optional. | If your domain has a certificate from a competitor you can set this to true. `1` or `0`
 `dv_auth_method` | Optional but required if `approver_email_address` is defined. | Expected values `EMAIL` (default), `FILE` and `DNS`
-`hashing_algorithm` | Optional. | Expected values `SHA1` and `SHA2-256 `(default)
+`hashing_algorithm` | Optional. | Expected values `SHA2-256`(default) and `SHA2-256-FULL-CHAIN`
 `order_token` | Optional | If set the order will be placed using the product code specified when the token was generated.
 
 ####SmarterTools Products
