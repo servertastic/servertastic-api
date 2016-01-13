@@ -798,9 +798,9 @@ Product Code | Product Description | Server Count Values | SAN Values | Type
 `SSLWebServerWildcard-24` | SSL Web Server Wildcard - 2 Years | Not Applicable | Not Applicable | OV
 `SSLWebServerEV-12` | SSL Web Server with EV - 1 Years | Not Applicable | 0-24 | EV
 `SSLWebServerEV-24` | SSL Web Server with EV - 2 Years | Not Applicable | 0-24 | EV
-`SSL123-12` | SSL123 - 1 Years | Not Applicable | Not Applicable | OV
-`SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable | OV
-`SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable | OV
+`SSL123-12` | SSL123 - 1 Years | Not Applicable | Not Applicable | DV
+`SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable | DV
+`SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable | DV
 
 ###SmarterTools Bundle
 
