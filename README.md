@@ -173,32 +173,32 @@ Field Name | Required | Further Information
 `reseller_unique_reference` | Required but may be set by `order_token` | 35 character limit
 `server_count` | Required for some products
 `san_count` | Required for some products
-`WebServerType` | Required for Symantec Certificates | Accepted values `Other` or `IIS`
+`WebServerType` | Required for OV and EV Certificates | Accepted values `Other` or `IIS`
 `approver_email_address` | Optional | If defined order will be placed bypassing invite routine
 `tech_contact_first_name` | Optional but required if `approver_email_address` is defined
 `tech_contact_last_name` | Optional but required if `approver_email_address` is defined
 `tech_contact_phone` | Optional but required if `approver_email_address` is defined
 `tech_contact_email` | Optional but required if `approver_email_address` is defined
 `tech_contact_title` | Optional but required if `approver_email_address` is defined
-`tech_contact_organisation_name` | Required for Symantec Certificates
-`tech_contact_address_line1` | Required for Symantec Certificates
-`tech_contact_address_line2` | Optional for Symantec Certificates
-`tech_contact_address_city` | Required for Symantec Certificates
-`tech_contact_address_region` | Required for Symantec Certificates
-`tech_contact_address_post_code` | Required for Symantec Certificates
-`tech_contact_address_country` | Required for Symantec Certificates
+`tech_contact_organisation_name` | Required for OV and EV Certificates
+`tech_contact_address_line1` | Required for OV and EV Certificates
+`tech_contact_address_line2` | Required for OV and EV Certificates
+`tech_contact_address_city` | Required for OV and EV Certificates
+`tech_contact_address_region` | Required for OV and EV Certificates
+`tech_contact_address_post_code` | Required for OV and EV Certificates
+`tech_contact_address_country` | Required for OV and EV Certificates
 `admin_contact_first_name` | Optional but required if `approver_email_address` is defined
 `admin_contact_last_name` | Optional but required if `approver_email_address` is defined
 `admin_contact_phone` | Optional but required if `approver_email_address` is defined
 `admin_contact_email` | Optional but required if `approver_email_address` is defined
 `admin_contact_title` | Optional but required if `approver_email_address` is defined
-`admin_contact_organisation_name` | Required for Symantec Certificates
-`admin_contact_address_line1` | Required for Symantec Certificates
-`admin_contact_address_line2` | Optional for Symantec Certificates
-`admin_contact_address_city` | Required for Symantec Certificates
-`admin_contact_address_region` | Required for Symantec Certificates
-`admin_contact_address_post_code` | Required for Symantec Certificates
-`admin_contact_address_country` | Required for Symantec Certificates
+`admin_contact_organisation_name` | Required for OV and EV Certificates
+`admin_contact_address_line1` | Required for OV and EV Certificates
+`admin_contact_address_line2` | Optional for OV and EV Certificates
+`admin_contact_address_city` | Required for OV and EV Certificates
+`admin_contact_address_region` | Required for OV and EV Certificates
+`admin_contact_address_post_code` | Required for OV and EV Certificates
+`admin_contact_address_country` | Required for OV and EV Certificates
 `org_name` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `org_division` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `org_address_city` | Optional but required if `approver_email_address` is defined but the csr field isn’t
@@ -728,79 +728,79 @@ This call returns all the products available through the reseller system, along 
 
 ###RapidSSL
 
-Product Code | Product Description | Server Count Values | SAN Values
-:--|:--|:--|:--
-`RapidSSL-12` | RapidSSL - 1 Years | Not Applicable | Not Applicable
-`RapidSSL-24` | RapidSSL - 2 Years | Not Applicable | Not Applicable
-`RapidSSL-36` | RapidSSL - 3 Years | Not Applicable | Not Applicable
-`RapidSSLWildcard-12` | RapidSSL Wildcard - 1 Years | Not Applicable | Not Applicable
-`RapidSSLWildcard-24` | RapidSSL Wildcard - 2 Years | Not Applicable | Not Applicable
-`RapidSSLWildcard-36` | RapidSSL Wildcard - 3 Years | Not Applicable | Not Applicable
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`RapidSSL-12` | RapidSSL - 1 Years | Not Applicable | Not Applicable | DV
+`RapidSSL-24` | RapidSSL - 2 Years | Not Applicable | Not Applicable | DV
+`RapidSSL-36` | RapidSSL - 3 Years | Not Applicable | Not Applicable | DV
+`RapidSSLWildcard-12` | RapidSSL Wildcard - 1 Years | Not Applicable | Not Applicable | DV
+`RapidSSLWildcard-24` | RapidSSL Wildcard - 2 Years | Not Applicable | Not Applicable | DV
+`RapidSSLWildcard-36` | RapidSSL Wildcard - 3 Years | Not Applicable | Not Applicable | DV
 
 ###Geotrust
 
-Product Code | Product Description | Server Count Values | SAN Values
-:--|:--|:--|:--
-`QuickSSLPremium-12` | QuickSSL Premium - 1 Years | Not Applicable | Not Applicable
-`QuickSSLPremium-24` | QuickSSL Premium - 2 Years | Not Applicable | Not Applicable
-`QuickSSLPremium-36` | QuickSSL Premium - 3 Years | Not Applicable | Not Applicable
-`QuickSSLPremiumMD-12` | QuickSSL Premium Multi Domain - 1 Years | Not Applicable | 4-4
-`QuickSSLPremiumMD-24` | QuickSSL Premium Multi Domain - 2 Years | Not Applicable | 4-4
-`QuickSSLPremiumMD-36` | QuickSSL Premium Multi Domain - 3 Years | Not Applicable | 4-4
-`TrueBizID-12`| True BusinessID - 1 Years | Not Applicable | Not Applicable
-`TrueBizID-24` | True BusinessID - 2 Years | Not Applicable | Not Applicable
-`TrueBizID-36` | True BusinessID - 3 Years | Not Applicable | Not Applicable
-`TrueBizIDWildcard-12` | True BusinessID Wildcard - 1 Years | Not Applicable | Not Applicable
-`TrueBizIDWildcard-24` | True BusinessID Wildcard - 2 Years | Not Applicable | Not Applicable
-`TrueBizIDWildcard-36` | True BusinessID Wildcard - 3 Years | Not Applicable | Not Applicable
-`TrueBizIDEV-12` | True BusinessID with EV - 1 Years | Not Applicable | Not Applicable
-`TrueBizIDEV-24` | True BusinessID with EV - 2 Years | Not Applicable | Not Applicable
-`TrueBizIDMD-12` | True Business ID with SAN - 1 Years | Not Applicable | 4-24
-`TrueBizIDMD-24` | True Business ID with SAN - 2 Years | Not Applicable | 4-24
-`TrueBizIDMD-36` | True Business ID with SAN - 3 Years | Not Applicable | 4-24
-`TrueBizIDEVMD-12` | True BusinessID with EV with SAN - 1 Years | Not Applicable | 4-24
-`TrueBizIDEVMD-24` | True BusinessID with EV with SAN - 2 Years | Not Applicable | 4-24
-`AntiMalwareBasic-12` | Geotrust Anti-Malware Scan Basic - 1 Years | Not Applicable | Not Applicable
-`AntiMalwareBasic-24` | Geotrust Anti-Malware Scan Basic - 2 Years | Not Applicable | Not Applicable
-`AntiMalwareBasic-36` | Geotrust Anti-Malware Scan Basic - 3 Years | Not Applicable | Not Applicable
-`AntiMalware-12` | Geotrust Anti-Malware Scan - 1 Years | Not Applicable | Not Applicable
-`AntiMalware-24` | Geotrust Anti-Malware Scan - 2 Years | Not Applicable | Not Applicable
-`AntiMalware-36` | Geotrust Anti-Malware Scan - 3 Years | Not Applicable | Not Applicable
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`QuickSSLPremium-12` | QuickSSL Premium - 1 Years | Not Applicable | Not Applicable | DV
+`QuickSSLPremium-24` | QuickSSL Premium - 2 Years | Not Applicable | Not Applicable | DV
+`QuickSSLPremium-36` | QuickSSL Premium - 3 Years | Not Applicable | Not Applicable | DV
+`QuickSSLPremiumMD-12` | QuickSSL Premium Multi Domain - 1 Years | Not Applicable | 4-4 | DV
+`QuickSSLPremiumMD-24` | QuickSSL Premium Multi Domain - 2 Years | Not Applicable | 4-4 | DV
+`QuickSSLPremiumMD-36` | QuickSSL Premium Multi Domain - 3 Years | Not Applicable | 4-4 | DV
+`TrueBizID-12`| True BusinessID - 1 Years | Not Applicable | Not Applicable | OV
+`TrueBizID-24` | True BusinessID - 2 Years | Not Applicable | Not Applicable | OV
+`TrueBizID-36` | True BusinessID - 3 Years | Not Applicable | Not Applicable | OV
+`TrueBizIDWildcard-12` | True BusinessID Wildcard - 1 Years | Not Applicable | Not Applicable | OV
+`TrueBizIDWildcard-24` | True BusinessID Wildcard - 2 Years | Not Applicable | Not Applicable | OV
+`TrueBizIDWildcard-36` | True BusinessID Wildcard - 3 Years | Not Applicable | Not Applicable | OV
+`TrueBizIDEV-12` | True BusinessID with EV - 1 Years | Not Applicable | Not Applicable | EV
+`TrueBizIDEV-24` | True BusinessID with EV - 2 Years | Not Applicable | Not Applicable | EV
+`TrueBizIDMD-12` | True Business ID with SAN - 1 Years | Not Applicable | 4-24 | OV
+`TrueBizIDMD-24` | True Business ID with SAN - 2 Years | Not Applicable | 4-24 | OV
+`TrueBizIDMD-36` | True Business ID with SAN - 3 Years | Not Applicable | 4-24 | OV
+`TrueBizIDEVMD-12` | True BusinessID with EV with SAN - 1 Years | Not Applicable | 4-24 | EV
+`TrueBizIDEVMD-24` | True BusinessID with EV with SAN - 2 Years | Not Applicable | 4-24 | EV
+`AntiMalwareBasic-12` | Geotrust Anti-Malware Scan Basic - 1 Years | Not Applicable | Not Applicable | NA
+`AntiMalwareBasic-24` | Geotrust Anti-Malware Scan Basic - 2 Years | Not Applicable | Not Applicable | NA
+`AntiMalwareBasic-36` | Geotrust Anti-Malware Scan Basic - 3 Years | Not Applicable | Not Applicable | NA
+`AntiMalware-12` | Geotrust Anti-Malware Scan - 1 Years | Not Applicable | Not Applicable | NA
+`AntiMalware-24` | Geotrust Anti-Malware Scan - 2 Years | Not Applicable | Not Applicable | NA
+`AntiMalware-36` | Geotrust Anti-Malware Scan - 3 Years | Not Applicable | Not Applicable | NA
 - When purchasing a TrueBizID Multidomain product the price includes the first four SANs.
 - When purchasing a QuickSSL Premium Multi Domain the price includes 4 SANs.
 
 ###Symantec
 
-Product Code | Product Description | Server Count Values | SAN Values
-:--|:--|:--|:--
-`SecureSite-12` | Secure Site - 1 Years | 1 - 500 | 0-24
-`SecureSite-24` | Secure Site - 2 Years | 1 - 500 | 0-24
-`SecureSite-36` | Secure Site - 3 Years | 1 - 500 | 0-24
-`SecureSiteEV-12` | Secure Site with EV - 1 Years | 1 - 500 | 0-24
-`SecureSiteEV-24` | Secure Site with EV - 2 Years | 1 - 500 | 0-24
-`SecureSitePro-12` | Secure Site Pro - 1 Years | 1 - 500 | 0-24
-`SecureSitePro-24` | Secure Site Pro - 2 Years | 1 - 500 | 0-24
-`SecureSitePro-36` | Secure Site Pro - 3 Years | 1 - 500 | 0-24
-`SecureSiteProEV-12` | Secure Site Pro with EV - 1 Years | 1 - 500 | 0-24
-`SecureSiteProEV-24` | Secure Site Pro with EV - 2 Years | 1 - 500 | 0-24
-`SymantecSafeSite-12` | Symantec Safe Site - 1 Years | Not Applicable | Not Applicable
-`SymantecSafeSite-24` | Symantec Safe Site - 2 Years | Not Applicable | Not Applicable
-`SymantecSafeSite-36` | Symantec Safe Site - 3 Years | Not Applicable | Not Applicable
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`SecureSite-12` | Secure Site - 1 Years | 1 - 500 | 0-24 | OV
+`SecureSite-24` | Secure Site - 2 Years | 1 - 500 | 0-24 | OV
+`SecureSite-36` | Secure Site - 3 Years | 1 - 500 | 0-24 | OV
+`SecureSiteEV-12` | Secure Site with EV - 1 Years | 1 - 500 | 0-24 | EV
+`SecureSiteEV-24` | Secure Site with EV - 2 Years | 1 - 500 | 0-24 | EV
+`SecureSitePro-12` | Secure Site Pro - 1 Years | 1 - 500 | 0-24 | OV
+`SecureSitePro-24` | Secure Site Pro - 2 Years | 1 - 500 | 0-24 | OV
+`SecureSitePro-36` | Secure Site Pro - 3 Years | 1 - 500 | 0-24 | OV
+`SecureSiteProEV-12` | Secure Site Pro with EV - 1 Years | 1 - 500 | 0-24 | EV
+`SecureSiteProEV-24` | Secure Site Pro with EV - 2 Years | 1 - 500 | 0-24 | EV
+`SymantecSafeSite-12` | Symantec Safe Site - 1 Years | Not Applicable | Not Applicable | NA
+`SymantecSafeSite-24` | Symantec Safe Site - 2 Years | Not Applicable | Not Applicable | NA
+`SymantecSafeSite-36` | Symantec Safe Site - 3 Years | Not Applicable | Not Applicable | NA
 
 ###Thawte
 
-Product Code | Product Description | Server Count Values | SAN Values
-:--|:--|:--|:--
-`SSLWebServer-12` | SSL Web Server - 1 Years | Not Applicable | 0-24
-`SSLWebServer-24` | SSL Web Server - 2 Years | Not Applicable | 0-24
-`SSLWebServer-36` | SSL Web Server - 3 Years | Not Applicable | 0-24
-`SSLWebServerWildcard-12` | SSL Web Server Wildcard - 1 Years | Not Applicable | Not Applicable
-`SSLWebServerWildcard-24` | SSL Web Server Wildcard - 2 Years | Not Applicable | Not Applicable
-`SSLWebServerEV-12` | SSL Web Server with EV - 1 Years | Not Applicable | 0-24
-`SSLWebServerEV-24` | SSL Web Server with EV - 2 Years | Not Applicable | 0-24
-`SSL123-12` | SSL123 - 1 Years | Not Applicable | Not Applicable
-`SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable
-`SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`SSLWebServer-12` | SSL Web Server - 1 Years | Not Applicable | 0-24 | OV
+`SSLWebServer-24` | SSL Web Server - 2 Years | Not Applicable | 0-24 | OV
+`SSLWebServer-36` | SSL Web Server - 3 Years | Not Applicable | 0-24 | OV
+`SSLWebServerWildcard-12` | SSL Web Server Wildcard - 1 Years | Not Applicable | Not Applicable | OV
+`SSLWebServerWildcard-24` | SSL Web Server Wildcard - 2 Years | Not Applicable | Not Applicable | OV
+`SSLWebServerEV-12` | SSL Web Server with EV - 1 Years | Not Applicable | 0-24 | EV
+`SSLWebServerEV-24` | SSL Web Server with EV - 2 Years | Not Applicable | 0-24 | EV
+`SSL123-12` | SSL123 - 1 Years | Not Applicable | Not Applicable | OV
+`SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable | OV
+`SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable | OV
 
 ###SmarterTools Bundle
 
