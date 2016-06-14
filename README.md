@@ -17,6 +17,7 @@ resellers to place, review and manage their orders.
 	* [Test Environment](#test-environment)
 	* [Example Usage](#example-usage)
 	* [Invite Routine](#invite-routine)
+	* [Encryption Everywhere] (#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
 	* [`place`](#place)
 	* [`review`](#review)
@@ -30,6 +31,7 @@ resellers to place, review and manage their orders.
 	* [`pollauth`](#pollauth)
 	* [`generateToken`](#generatetoken)
 	* [`showTokens`](#showtokens)
+	* [`generatedns`](#generatedns)
 * [ResellerAccount Web Service Details](#reselleraccount-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
 	* [`review`](#reselleraccount-review)
@@ -117,6 +119,13 @@ As a reseller you can set the Invite Styles via the reseller dashboard. This inc
 
 ![Invite Styles](https://raw.githubusercontent.com/servertastic/servertastic-api/master/images/invitestyles.jpeg)
 
+###Encryption Everywhere
+The Encryption Everywhere (EE) functions are only available to resellers who have signed up to the Encryption Everywhere program.
+
+To place an EE order you must first use the `generatedns` call to retrieve the required DNS string. Once the DNS string has been added to the domain you can then `place` the order. The domain validation is done during the place order. The place order request will either respond with a success and the certificate or fail. There is no pending order status. If an order fails a verbose response should identify the reasons.
+
+All EE orders must use the `POST` method.
+
 ##Order Web Service Details
 
 ###`place`
@@ -175,11 +184,11 @@ Field Name | Required | Further Information
 `san_count` | Required for some products
 `WebServerType` | Required for OV and EV Certificates | Accepted values `Other` or `IIS`
 `approver_email_address` | Optional | If defined order will be placed bypassing invite routine
-`tech_contact_first_name` | Optional but required if `approver_email_address` is defined
-`tech_contact_last_name` | Optional but required if `approver_email_address` is defined
-`tech_contact_phone` | Optional but required if `approver_email_address` is defined
-`tech_contact_email` | Optional but required if `approver_email_address` is defined
-`tech_contact_title` | Optional but required if `approver_email_address` is defined
+`tech_contact_first_name` | Required for EE orders and if `approver_email_address` is defined
+`tech_contact_last_name` | Required for EE orders and if `approver_email_address` is defined
+`tech_contact_phone` | Required for EE orders and if `approver_email_address` is defined
+`tech_contact_email` | Required for EE orders and if `approver_email_address` is defined
+`tech_contact_title` | Required for EE orders and if `approver_email_address` is defined
 `tech_contact_organisation_name` | Required for OV and EV Certificates
 `tech_contact_address_line1` | Required for OV and EV Certificates
 `tech_contact_address_line2` | Required for OV and EV Certificates
@@ -187,11 +196,11 @@ Field Name | Required | Further Information
 `tech_contact_address_region` | Required for OV and EV Certificates
 `tech_contact_address_post_code` | Required for OV and EV Certificates
 `tech_contact_address_country` | Required for OV and EV Certificates
-`admin_contact_first_name` | Optional but required if `approver_email_address` is defined
-`admin_contact_last_name` | Optional but required if `approver_email_address` is defined
-`admin_contact_phone` | Optional but required if `approver_email_address` is defined
-`admin_contact_email` | Optional but required if `approver_email_address` is defined
-`admin_contact_title` | Optional but required if `approver_email_address` is defined
+`admin_contact_first_name` | Required for EE orders and if `approver_email_address` is defined
+`admin_contact_last_name` |  Required for EE orders and if `approver_email_address` is defined
+`admin_contact_phone` |  Required for EE orders and if `approver_email_address` is defined
+`admin_contact_email` |  Required for EE orders and if `approver_email_address` is defined
+`admin_contact_title` |  Required for EE orders and if `approver_email_address` is defined
 `admin_contact_organisation_name` | Required for OV and EV Certificates
 `admin_contact_address_line1` | Required for OV and EV Certificates
 `admin_contact_address_line2` | Optional for OV and EV Certificates
@@ -205,7 +214,7 @@ Field Name | Required | Further Information
 `org_address_region` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `org_address_country` | Optional but required if `approver_email_address` is defined but the csr field isn’t
 `domain_name` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`csr` | Optional but required if `approver_email_address` is defined and organisation details aren’t
+`csr` |  Required for EE orders and if `approver_email_address` is defined and organisation details aren’t
 `renewal` | Optional. | You can set if this order is a renewal `1` or `0`
 `competitive_upgrade` | Optional. | If your domain has a certificate from a competitor you can set this to true. `1` or `0`
 `dv_auth_method` | Optional but required if `approver_email_address` is defined. | Expected values `EMAIL` (default), `FILE` and `DNS`
@@ -605,7 +614,27 @@ This call allows resellers to keep track of tokens that have been generated and 
 	        </order_token
 	  </unused_tokens>
 	</response>
-	
+
+###`generatedns`
+This call is used for Encryption Everywhere resellers to obtain the required DNS string BEFORE placing an order.
+
+**`generatedns` request**
+
+Must use `POST` method
+
+`'api_key'=>'[Your API Key]'`
+`'csr' => '[Valid CSR that will be used during place]'`
+
+**`generatedns` response**
+
+	<?xml version="1.0"?>
+	<response>
+		<success>EE DNS</success>
+		<add_dns_entry_to>domain.com</add_dns_entry_to>
+		<cname>[computedstring].domain.com</cname>
+		<point_to>[computed_datestamp].domain.com</point_to>
+	</response>
+
 ##ResellerAccount Web Service Details
 
 ###`regenerateapikey`
@@ -801,6 +830,12 @@ Product Code | Product Description | Server Count Values | SAN Values | Type
 `SSL123-12` | SSL123 - 1 Years | Not Applicable | Not Applicable | DV
 `SSL123-24` | SSL123 - 2 Years | Not Applicable | Not Applicable | DV
 `SSL123-36` | SSL123 - 3 Years | Not Applicable | Not Applicable | DV
+
+###Encryption Everywhere
+
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`EESecureSiteStarter-12` | Basic DV - 1 Year | Not Applicable | Not Applicable  | DV
 
 ###SmarterTools Bundle
 
