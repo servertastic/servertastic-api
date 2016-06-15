@@ -622,6 +622,8 @@ This call is used for Encryption Everywhere resellers to obtain the required DNS
 
 Must use `POST` method
 
+`https://api.servertastic.com/ssl/order/generatedns`
+
 `'api_key'=>'[Your API Key]'`
 `'csr' => '[Valid CSR that will be used during place]'`
 
