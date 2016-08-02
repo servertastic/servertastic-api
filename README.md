@@ -27,7 +27,7 @@ resellers to place, review and manage their orders.
 	* [`modifiedorders`](#modifiedorders)
 	* [`expiring`](#expiring)
 	* [`approverlist`](#approverlist)
-	* [`changeAuth`](#changeAuth)
+	* [`changeAuthMethod`](#changeAuthMethod)
 	* [`pollauth`](#pollauth)
 	* [`generateToken`](#generatetoken)
 	* [`showTokens`](#showtokens)
@@ -536,13 +536,13 @@ The approverlist call allows you to retrieve all acceptable domain approver emai
 	   </approver_email>
 	</response>
 
-###`changeAuth`
+###`changeAuthMethod`
 
 This call allows orders for domain validated products, that have either FILE or DNS authentication set, to change the authentication method back to Email.
 
 **`changeAuth` request**
 
-`https://api.servertastic.com/ssl/order/changeauth?api_key=[Your API Key (can be replaced with order_token)]&reseller_order_id=[Reseller Order ID]`
+`https://api.servertastic.com/ssl/order/changeauthmethod?api_key=[Your API Key (can be replaced with order_token)]&reseller_order_id=[Reseller Order ID]`
 
 **`changeAuth` response**
 
