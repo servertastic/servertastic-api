@@ -61,8 +61,8 @@ Once you have become a reseller you will be provided with an `api_key` it is imp
 
 API Method|Supported Functions
 :--|:--
-`api_key`|`regenerateapikey``review``addtestpoints``emptytestpoints``listproduct``generatetoken``generatedns``modifiedorders``expiring``showtokens`
-`order_token`|`place``review``cancel``resendemail``changeapproveremail``approverlist``changeauthmethod``pollauth`
+`api_key`|`regenerateapikey`,`review`,`addtestpoints`,`emptytestpoints`,`listproduct`,`generatetoken`,`generatedns`,`modifiedorders`,`expiring`,`showtokens`
+`order_token`|`place`,`review`,`cancel`,`resendemail`,`changeapproveremail`,`approverlist`,`changeauthmethod`,`pollauth`
 
 
 ###Returned Data
