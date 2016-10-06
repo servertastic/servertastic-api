@@ -6,11 +6,13 @@
 * [Reseller Dashboard](https://reseller.servertastic.com)
 * [Servertastic Support](https://support.servertastic.com)
 
-The Servertastic APIv2 contains improvements over our first API. Furture enhancements will only be made to APIv2.
+The Servertastic APIv2 contains improvements over our first API. This opens up the API to all customers and not just resellers. Furture enhancements will only be made to APIv2.
 
 API Endpoint: `https://api2.servertastic.com`
 
 Test API Endpoint: `https://test-api2.servertastic.com`
+
+Whitelabel API Endpoint: `https://api2.manage.cm`
 
 ##Target Audience
 The target audience for this document are Servertastic resellers, or
@@ -52,12 +54,16 @@ resellers to place, review and manage their orders.
 ##Overview
 We offer a series of simple API calls that allow resellers to place, modify and review orders by constructing a URL that contains a number of parameters that allow Servertastic to return relevant information or perform an action on the resellers behalf. The returned information can be displayed as XML (default) or JSON.
 
-The API is organised into three services - `order`, `reselleraccount` and `products`. The order web service is the most commonly used at this point as it is concerned with all operations relating to an order. The `reselleraccount` service concentrates on all actions related to the resellers account and will be developed further in the future. The `products` section simply allows all products along with related information to be pulled.
+The API is organised into three services - `order`, `reselleraccount` and `products`. The `order` web service is the most commonly used at this point as it is concerned with all operations relating to an order. The `reselleraccount` service concentrates on all actions related to the resellers account and will be developed further in the future. The `products` section simply allows all products along with related information to be pulled.
 
 ##Using the API
-This API is intended to be used by Servertastic resellers. For more information on becoming a reseller please contact <team@servertastic.com> or visit <https://www.servertastic.com/resellers>. 
+This API is intended to be used by Servertastic customers and resellers. Orders placed via Servertastic Retail site can be fulfilled using the API. For more information on becoming a reseller please contact <team@servertastic.com> or visit <https://www.servertastic.com/resellers>. 
 
+###Resellers
 Once you have become a reseller you will be provided with an `api_key` it is imperative that this is kept confidential at all times. The `api_key` is used to manage all functions related to the reseller account and to generate orders with an `order_token`. An `order_token` is used to manage all aspects of an order.
+
+###Non Resellers
+As a non-reseller you will need to place orders via the [Servertastic Retail website](https://www.servertastic.com). Once the order is fulfilled you will receive an `order_token`. This can be used to complete the order using the API.
 
 API Method|Supported Functions
 :--|:--
@@ -118,9 +124,6 @@ The place call in the Order web service now allows information to be posted to t
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 	$response = curl_exec($ch);
 	curl_close($ch);
-	
-###Invite Routine
-When placing an order a review URL is generated. This link can be used to either complete the order and/or view the current status of the order.
 
 ##Order Web Service Details
 
@@ -143,9 +146,15 @@ This call is used to generate an order token that can be used to place or take f
 	<order_token></order_token>
 	</response>
 
-###`place`
-The `place` call allows an order to be placed, upon successful completion the returned XML shows the unique Servertastic order number along with the invite URL from the certificate provider or product licenses. This section is broken down into SSL and SmarterTools orders as different parameters are required and the response from the API varies.
+###Completing Orders via Web Interface
+When placing an order a review URL is generated. This URL can be used to either complete the order and/or view the current status of the order. To review the order using the web interface you should proceed to [API End Point]/token/[`order_token`] in browser.
 
+Example using Servertastic branded interface: `https://api2.servertastic.com/token/abc123456789`
+
+Example using white label interface: `https://api2.manage.cm/token/abc123456789`
+
+###`place`
+The `place` call allows an order to be placed using the API and an `order_token` rather than having to use the Web Interface.
 This API call supports both the `POST` and `GET` method. If you are supplying a `csr` then you must use the `POST` method.
 
 ####SSL Products
@@ -928,4 +937,4 @@ Product Code | Product Description
 `SmarterToolsSilverPackage` | SmarterTools Silver Package - 6 Email Incidents
 `SmarterToolsGoldPackage` | SmarterTools Gold Package - 6 Email or Phone Incidents
 `SmarterToolsPlatinumPackage` | SmarterTools Platinum Package - 6 Email or Phone Incidents - 2 (24x7) Phone Incidents
-`SmarterToolsInstallationSupport` | SmarterTools Installation Support
+`SmarterToolsInstallationSupport` | SmarterTools Installation Supporta
