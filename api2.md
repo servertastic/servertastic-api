@@ -137,6 +137,8 @@ This call is used to generate an order token that can be used to place or take f
 
 `https://api.servertastic.com/ssl/order/generatetoken?api_key=[Your API Key]&st_product_code=[Product Code]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
 
+For full field information see [Fields](#fields)
+
 **`generatetoken` response**
 
 	<response>
@@ -153,18 +155,15 @@ Example using Servertastic branded interface: `https://api2.servertastic.com/tok
 
 Example using white label interface: `https://api2.manage.cm/token/abc123456789`
 
+With APIv2 no emails are sent to the end user with the order management link. You must supply this to the end user yourself if you want them to complete the order using the web interface.
+
 ###`place`
 The `place` call allows an order to be placed using the API and an `order_token` rather than having to use the Web Interface.
+
 This API call supports both the `POST` and `GET` method. If you are supplying a `csr` then you must use the `POST` method.
 
 ####SSL Products
-When placing an order with the API, the order will perform an invite routine or bypass this step and place the order with the CA and jump straight to the domain approver email stage. The field that triggers an order instead of an invite is the `approver_email_address`, if this is set then the `technical`, `administration` and `csr` (either generated or provided) need to be provided. This only currently works for Domain Validated products.
-
-If your order uses the invite process and you do not want the invite email to be sent to the end customer then set the `end_customer_email` to `none`. If an email is provided for the end customer, then they will receive an email from certificate provider containing the Invite link if the order is in the invite process. The `reseller_unique_reference` can be any string but it must not have been previously used by the reseller, it uniquely identifies the order with the certificate provider and prevents multiple ordering in the event of a problem. 
-
-The `technical` contact, `administration` contact and `organisational` information is optional but if the information is supplied then all of the corresponding field must be completed. If they are provided they cannot be edited by the customer in the order process.
-
-All orders can pass on a `csr` (if the approver email has been provided then it is required) so the customer doesn’t have to supply this, it can be supplied directly using the `csr` field or the API can create one using the organisation, admin contact email and domain_name fields. If the `csr` is to be supplied, it can only be sent using the `POST` method. If you do not supply the `csr` and instead supply only the `domain_name` then the `csr` and `private_key` will be returned in the success response. But for security reasons, this information is not stored and cannot be retrieved at a later time.
+All orders can pass a `csr` (if the approver email has been provided then it is required) so the customer doesn’t have to supply this, it can be supplied directly using the `csr` field or the API can create one using the organisation, admin contact email and domain_name fields. If the `csr` is to be supplied, it can only be sent using the `POST` method. If you do not supply the `csr` and instead supply only the `domain_name` then the `csr` and `private_key` will be returned in the success response. But for security reasons, this information is not stored and cannot be retrieved at a later time.
 
 Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE` and `DNS`. The `FILE` option requires a FILE to be placed on the server with a specific name and specific contents. The `DNS` authentication method requires a user to create a CNAME record in this format:
                                         
@@ -172,11 +171,9 @@ Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE`
 
 **`place` order request**
 
-`https://api.servertastic.com/ssl/order/place?st_product_code=[Product Code]&api_key=[Reseller API Key]&end_customer_email=[Email address|’none’]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
+`https://api.servertastic.com/ssl/order/place?order_token=[order_token]`
 
-**Using `order_token`**
-
-`https://api.servertastic.com/ssl/order/place?order_token=[Previously generated order_token]&end_customer_email=[Email address|’none’]`
+Additional parameters will be required depending on product type.
 
 For full field information see [Fields](#fields)
 
@@ -200,19 +197,20 @@ For full field information see [Fields](#fields)
 
 Field Name | Required | Further Information
 :--|:--|:--
-`st_product_code`| Required unless `order_token` is present
-`api_key` | Required unless `order_token` is present
-`end_customer_email` | Required | Email address of `none` accepted
-`reseller_unique_reference` | Required but may be set by `order_token` | 35 character limit
-`server_count` | Required for some products
-`san_count` | Required for some products
+`st_product_code`| Required to generate `order_token`
+`api_key` | Required to generate `order_token`
+`end_customer_email` | Required to generate `order_token` | Email address of `none` accepted
+`reseller_unique_reference` | Required to generate `order_token` | 35 character limit
+`order_token` | Not Required when using `generatetoken` otherwise Required
+`server_count` | Required for Symantec products
+`san_count` | Required for MD products
 `WebServerType` | Required for OV and EV Certificates | Accepted values `Other` or `IIS`
-`approver_email_address` | Optional | If defined order will be placed bypassing invite routine
-`tech_contact_first_name` | Required for EE orders and if `approver_email_address` is defined
-`tech_contact_last_name` | Required for EE orders and if `approver_email_address` is defined
-`tech_contact_phone` | Required for EE orders and if `approver_email_address` is defined
-`tech_contact_email` | Required for EE orders and if `approver_email_address` is defined
-`tech_contact_title` | Required for EE orders and if `approver_email_address` is defined
+`approver_email_address` | Required see [`approverlist`](#approverlist)
+`tech_contact_first_name` | Required
+`tech_contact_last_name` | Required
+`tech_contact_phone` | Required
+`tech_contact_email` | Required
+`tech_contact_title` | Required
 `tech_contact_organisation_name` | Required for OV and EV Certificates
 `tech_contact_address_line1` | Required for OV and EV Certificates
 `tech_contact_address_line2` | Required for OV and EV Certificates
@@ -220,11 +218,11 @@ Field Name | Required | Further Information
 `tech_contact_address_region` | Required for OV and EV Certificates
 `tech_contact_address_post_code` | Required for OV and EV Certificates
 `tech_contact_address_country` | Required for OV and EV Certificates
-`admin_contact_first_name` | Required for EE orders and if `approver_email_address` is defined
-`admin_contact_last_name` |  Required for EE orders and if `approver_email_address` is defined
-`admin_contact_phone` |  Required for EE orders and if `approver_email_address` is defined
-`admin_contact_email` |  Required for EE orders and if `approver_email_address` is defined
-`admin_contact_title` |  Required for EE orders and if `approver_email_address` is defined
+`admin_contact_first_name` | Required
+`admin_contact_last_name` |  Required
+`admin_contact_phone` |  Required
+`admin_contact_email` |  Required
+`admin_contact_title` |  Required
 `admin_contact_organisation_name` | Required for OV and EV Certificates
 `admin_contact_address_line1` | Required for OV and EV Certificates
 `admin_contact_address_line2` | Optional for OV and EV Certificates
@@ -232,18 +230,17 @@ Field Name | Required | Further Information
 `admin_contact_address_region` | Required for OV and EV Certificates
 `admin_contact_address_post_code` | Required for OV and EV Certificates
 `admin_contact_address_country` | Required for OV and EV Certificates
-`org_name` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`org_division` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`org_address_city` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`org_address_region` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`org_address_country` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`domain_name` | Optional but required if `approver_email_address` is defined but the csr field isn’t
-`csr` |  Required for EE orders and if `approver_email_address` is defined and organisation details aren’t
+`org_name` | Optional but required if the `csr` isn’t supplied
+`org_division` | Optional but required if the `csr` isn’t supplied
+`org_address_city` | Optional but required if the `csr` isn’t supplied
+`org_address_region` | Optional but required if the `csr` isn’t supplied
+`org_address_country` | Optional but required if the `csr` isn’t supplied
+`domain_name` | Optional but required if the `csr` isn’t supplied
+`csr` |  Optional but required if the `domain_name` isn’t supplied
 `renewal` | Optional. | You can set if this order is a renewal `1` or `0`
 `competitive_upgrade` | Optional. | If your domain has a certificate from a competitor you can set this to true. `1` or `0`
-`dv_auth_method` | Optional but required if `approver_email_address` is defined. | Expected values `EMAIL` (default), `FILE` and `DNS`
+`dv_auth_method` | Required for DV Orders | Expected values `EMAIL` (default), `FILE` and `DNS`
 `hashing_algorithm` | Optional. | Expected values `SHA2-256`(default) and `SHA2-256-FULL-CHAIN`
-`order_token` | Optional | If set the order will be placed using the product code specified when the token was generated.
 
 ####SmarterTools Products
 The place call for the SmarterTools products works in the same was as for the SSL products above but the information that is required varies slightly. For example many of the fields aren’t required and an end customer email address must be specified. Please note a bundle can only ever be assigned to an email address once, across the SmarterTools system.
@@ -272,15 +269,9 @@ The response details license information for the Bundle or product which can be 
 	</response>
 
 ###`review`
-The review call shows the status and all information that is currently available for an order. The call interrogates the Servertastic database that is updated every five minutes. This may mean that the information presented could be up to five minutes old.
+The review call shows the status and all information that is currently available for an order. The call interrogates the Servertastic database that is synced with our providers every five minutes. This may mean that the information presented could be up to five minutes old.
 
 ####SSL Orders
-
-**`review` order request**
-
-`https://api.servertastic.com/ssl/order/review?api_key=[Reseller API key]&reseller_order_id=[Reseller Order ID]`
-
-**Using `order_token`**
 
 `https://api.servertastic.com/ssl/order/review?order_token=[current order_token]`
 
