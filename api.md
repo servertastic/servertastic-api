@@ -1,4 +1,6 @@
-#Servertastic Reseller API Documentation
+#Servertastic Reseller API Documentation - DEPRECATED
+
+**This API is being deprecated. Please refer to our [APIv2 Documentation](/api2.md)**
 
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
@@ -17,7 +19,7 @@ resellers to place, review and manage their orders.
 	* [Test Environment](#test-environment)
 	* [Example Usage](#example-usage)
 	* [Invite Routine](#invite-routine)
-	* [Encryption Everywhere] (#encryption-everywhere)
+	* [Encryption Everywhere](#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
 	* [`place`](#place)
 	* [`review`](#review)

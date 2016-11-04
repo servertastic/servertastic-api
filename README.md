@@ -1,8 +1,7 @@
 #Servertastic Reseller API Documentation
 
-
-* [Current API Documentation](/api.md)
-* [Upcoming APIv2 Documentation](/api2.md)
+* [APIv2 Documentation](/api2.md)
+* [Previous API Documentation](/api.md)
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
 * [Servertastic Support](https://www.servertastic.com/support)
