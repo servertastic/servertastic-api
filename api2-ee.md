@@ -40,7 +40,7 @@ Must use `POST` method
 		<point_to>[computed_datestamp].domain.com</point_to>
 	</response>
 	
-`https://api.servertastic.com/ssl/order/place?st_product_code=[Product Code]&api_key=[Reseller API Key]&end_customer_email=[Email address|’none’]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
+`https://api2.servertastic.com/ssl/order/place?st_product_code=[Product Code]&api_key=[Reseller API Key]&end_customer_email=[Email address|’none’]&reseller_unique_reference=[Unique order reference supplied by the reseller - 35 chars maximum]`
 
 ###`placeee`
 
