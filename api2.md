@@ -1,4 +1,4 @@
-#Servertastic Reseller APIv2 Documentation
+#Servertastic APIv2 Documentation
 
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
@@ -72,7 +72,7 @@ API Method|Supported Functions
 ###Returned Data
 By default, the data is returned in an unstyled XML format. If required the returned data can be returned using JSON by appending .json to the web service section of the URL:
 
-`https://api.servertastic.com/order.json/generatetoken?st_product_code=RapidSSL-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=xyz01`
+`https://api2.servertastic.com/order.json/generatetoken?st_product_code=RapidSSL-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=xyz01`
 
 ###Success and Errors
 
@@ -161,7 +161,7 @@ The `place` call allows an order to be placed using the API and an `order_token`
 This API call supports both the `POST` and `GET` method. If you are supplying a `csr` then you must use the `POST` method.
 
 ####SSL Products
-All orders can pass a `csr` (if the approver email has been provided then it is required) so the customer doesn’t have to supply this, it can be supplied directly using the `csr` field or the API can create one using the organisation, admin contact email and domain_name fields. If the `csr` is to be supplied, it can only be sent using the `POST` method. If you do not supply the `csr` and instead supply only the `domain_name` then the `csr` and `private_key` will be returned in the success response. But for security reasons, this information is not stored and cannot be retrieved at a later time.
+All orders can pass a `csr` or the API can create one using the organisation, admin contact email and `domain_name` fields. If the `csr` is to be supplied, it can only be sent using the `POST` method. If you do not supply the `csr` and instead supply only the `domain_name` then the `csr` and `private_key` will be returned in the success response. But for security reasons, this information is not stored and cannot be retrieved at a later time.
 
 Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE` and `DNS`. The `FILE` option requires a FILE to be placed on the server with a specific name and specific contents. The `DNS` authentication method requires a user to create a CNAME record in this format:
                                         
