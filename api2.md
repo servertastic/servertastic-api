@@ -40,7 +40,7 @@ resellers to place, review and manage their orders.
 	* [`generateToken`](#generatetoken)
 	* [`showTokens`](#showtokens)
 	* [`generatedns`](#generatedns)
-* [ResellerAccount Web Service Details](#reselleraccount-web-service-details)
+* [Account Web Service Details](#account-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
 	* [`review`](#reselleraccount-review)
 	* [`addtestpoints`](#addtestpoints)
@@ -52,7 +52,7 @@ resellers to place, review and manage their orders.
 ##Overview
 We offer a series of simple API calls that allow resellers to place, modify and review orders by constructing a URL that contains a number of parameters that allow Servertastic to return relevant information or perform an action on the resellers behalf. The returned information can be displayed as XML (default) or JSON.
 
-The API is organised into three services - `order`, `reselleraccount` and `products`. The `order` web service is the most commonly used at this point as it is concerned with all operations relating to an order. The `reselleraccount` service concentrates on all actions related to the resellers account and will be developed further in the future. The `products` section simply allows all products along with related information to be pulled.
+The API is organised into three services - `order`, `account` and `products`. The `order` web service is the most commonly used at this point as it is concerned with all operations relating to an order. The `account` service concentrates on all actions related to the resellers account and will be developed further in the future. The `products` section simply allows all products along with related information to be pulled.
 
 ##Using the API
 This API is intended to be used by Servertastic customers and resellers. Orders placed via Servertastic Retail site can be fulfilled using the API. For more information on becoming a reseller please contact <team@servertastic.com> or visit <https://www.servertastic.com/resellers>. 
@@ -618,7 +618,7 @@ This call allows resellers to keep track of tokens that have been generated and 
 	</response>
 
 
-##ResellerAccount Web Service Details
+##Account Web Service Details
 
 ###`regenerateapikey`
 
@@ -626,7 +626,7 @@ This call allows a reseller to regenerate their API key.
 
 **`regenerateapikey` request**
 
-`https://api2.servertastic.com/reselleraccount/regenerateapikey?api_key=[Your API Key]`
+`https://api2.servertastic.com/account/regenerateapikey?api_key=[Your API Key]`
 
 **`regenerateapikey` response**
 
@@ -642,7 +642,7 @@ This call returns information about the reseller associated with the provided AP
 
 **`review` request**
 
-`https://api2.servertastic.com/reselleraccount/review?api_key=[Your API Key]`
+`https://api2.servertastic.com/account/review?api_key=[Your API Key]`
 
 **`review` response**
 
@@ -680,7 +680,7 @@ This call allows resellers to add points to their account in order to aid testin
 
 **`addtestpoints` request**
 
-`https://test-api2.servertastic.com/reselleraccount/addtestpoints?api_key=[Your API Key]&points=[The number of points you would like to add]
+`https://test-api2.servertastic.com/account/addtestpoints?api_key=[Your API Key]&points=[The number of points you would like to add]
 `
 
 **`addtestpoints` response**
@@ -697,7 +697,7 @@ This call allows resellers to set their point level to 0 for their account in or
 
 **`emptytestpoints` request**
 
-`https://test-api2.servertastic.com/reselleraccount/emptytestpoints?api_key=[Your API Key]`
+`https://test-api2.servertastic.com/account/emptytestpoints?api_key=[Your API Key]`
 
 **`emptytestpoints` response**
 
