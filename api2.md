@@ -39,7 +39,7 @@ resellers to place, review and manage their orders.
 	* [`pollauth`](#pollauth)
 	* [`generateToken`](#generatetoken)
 	* [`showTokens`](#showtokens)
-	* [`generatedns`](#generatedns)
+	* [`advanceorder`](#advanceorder)
 * [Account Web Service Details](#account-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
 	* [`review`](#reselleraccount-review)
@@ -616,7 +616,23 @@ This call allows resellers to keep track of tokens that have been generated and 
 	        </order_token
 	  </unused_tokens>
 	</response>
+	
+###`advanceorder`
 
+This call is only valid on test orders. The order maybe queued for review within the system. Using this API call you can advance an order onto the next stage.
+
+**`advanceorder` request**
+
+`https://api2.servertastic.com/order/advanceorder?order_token=[Order Token]`
+
+**`advanceorder` response**
+
+	<?xml version="1.0"?>
+	<response>
+		<success>
+		Order was pushed. Please wait up to 3 minutes for the status to update - STR_1_201611071123
+		</success>
+	</response>
 
 ##Account Web Service Details
 
