@@ -239,6 +239,7 @@ Field Name | Required | Further Information
 `competitive_upgrade` | Optional. | If your domain has a certificate from a competitor you can set this to true. `1` or `0`
 `dv_auth_method` | Required for DV Orders | Expected values `EMAIL` (default), `FILE` and `DNS`
 `hashing_algorithm` | Optional. | Expected values `SHA2-256`(default) and `SHA2-256-FULL-CHAIN`
+`san_domains`| Required for MD Orders | Comma seperated list of domains up to the `san_count` limit.
 
 ####SmarterTools Products
 The place call for the SmarterTools products works in the same was as for the SSL products above but the information that is required varies slightly. You must first use the `generatetoken` call to generate a token for the order which is then used for fulfilment.

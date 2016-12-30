@@ -1,4 +1,4 @@
-#Servertastic Reseller API Documentation - DEPRECATED
+#Servertastic API Documentation - DEPRECATED
 
 **This API is being deprecated. Please refer to our [APIv2 Documentation](/api2.md)**
 

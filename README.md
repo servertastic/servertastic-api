@@ -1,4 +1,4 @@
-#Servertastic Reseller API Documentation
+#Servertastic API Documentation
 
 * [APIv2 Documentation](/api2.md)
 * [Encryption Everywhere API](/api2-ee.md)
