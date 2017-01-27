@@ -43,6 +43,7 @@ resellers to place, review and manage their orders.
 * [Account Web Service Details](#account-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
 	* [`review`](#reselleraccount-review)
+	* [`pointsaudit`](#pointsaudit)
 	* [`addtestpoints`](#addtestpoints)
 	* [`emptytestpoints`](#emptytestpoints)
 * [Product Web Service Details](#product-web-service-details)
@@ -689,6 +690,31 @@ This call returns information about the reseller associated with the provided AP
 	  <st_product_code></st_product_code>
 	     </completed_order>
 	   </completed_orders>
+	</response>
+	
+###`pointsaudit`<a name="pointsaudit"></a>
+
+This call returns details of all transactions that have affected the account points total. This includes Placed orders, Cancelled orders, Points Deposit, and adjustments by Servertastic.
+
+**`review` request**
+
+`https://api2.servertastic.com/account/pointsaudit?api_key=[Your API Key]`
+
+**`review` response**
+
+	<?xml version="1.0"?>
+	<response>
+		<success>PointsAudit</success>
+		<record>
+			<Timestamp></Timestamp>
+			<PointsAdjustment></PointsAdjustment>
+			<NewPointsTotal></NewPointsTotal>
+			<Description></Description>
+			<OrderDate/>
+			<OrderReference/>
+			<OrderToken/>
+			<Notes></Notes>
+		</record>
 	</response>
 	
 ###`addtestpoints`
