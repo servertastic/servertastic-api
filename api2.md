@@ -656,7 +656,7 @@ This call allows a reseller to regenerate their API key.
 	
 ###`review`<a name="reselleraccount-review"></a>
 
-This call returns information about the reseller associated with the provided API key, including the number of points that are available to spend and the details of each order that is currently in the Servertastic system.
+This call returns information about the reseller associated with the provided API key, including the number of points that are available to spend and the details of each order that is currently in the Servertastic system that is not Complete or Cancelled.
 
 **`review` request**
 
@@ -696,11 +696,11 @@ This call returns information about the reseller associated with the provided AP
 
 This call returns details of all transactions that have affected the account points total. This includes Placed orders, Cancelled orders, Points Deposit, and adjustments by Servertastic.
 
-**`review` request**
+**`pointsaudit` request**
 
 `https://api2.servertastic.com/account/pointsaudit?api_key=[Your API Key]`
 
-**`review` response**
+**`pointsaudit` response**
 
 	<?xml version="1.0"?>
 	<response>
