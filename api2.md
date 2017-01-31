@@ -71,9 +71,9 @@ API Method|Supported Functions
 
 
 ###Returned Data
-By default, the data is returned in an unstyled XML format. If required the returned data can be returned using JSON by appending .json to the web service section of the URL:
+By default, the data is returned in an unstyled XML format. If required the returned data can be returned using JSON by appending .json to the URL:
 
-`https://api2.servertastic.com/order.json/generatetoken?st_product_code=RapidSSL-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=xyz01`
+`https://api2.servertastic.com/order/generatetoken.json?st_product_code=RapidSSL-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=xyz01`
 
 ###Success and Errors
 
@@ -99,7 +99,7 @@ Depending on how you would like to use the API, there are a couple of ways of ge
 
 If you would like to call the methods in your scripts then technologies such as CURL are recommended, especially as it allows the XML to be retrieved in the event of a 403 error. Below is a quick PHP example for placing an order, the `$response` variable contains XML/JSON string:
 
-	$url = 'https://api2.servertastic.com/order.xml/generatetoken?st_product_code=RapidSSLWildcard-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=ref123';
+	$url = 'https://api2.servertastic.com/order/generatetoken?st_product_code=RapidSSLWildcard-24&api_key=abc123&end_customer_email=customer@domain.com&reseller_unique_reference=ref123';
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
