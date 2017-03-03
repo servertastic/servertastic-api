@@ -54,15 +54,14 @@ Must use `POST` method. The returned `dns_string` should be added to the domain 
 	<?xml version="1.0"?>
 	<response>
 		<success>EE DNS</success>
-		<add_dns_entry_to>[domain.com]</add_dns_entry_to>
 		<dns_string>[computedstring]</dns_string>
 	</response>
 	
 **`generatefile` request**
 
-Must use `POST` method. The returned `dns_string` should be added to the domain DNS as a TXT record.
+Must use `POST` method.
 
-`https://api2.servertastic.com/order/generatedns`
+`https://api2.servertastic.com/order/generatefile`
 
 `'api_key'=>'[Your API Key]'`
 `'csr' => '[Valid CSR that will be used during place]'`
