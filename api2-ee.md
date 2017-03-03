@@ -21,7 +21,7 @@ Whitelabel API Endpoint: `https://api2.manage.cm`
 ###`generatedns`
 This call is used for Encryption Everywhere resellers to obtain the required DNS string BEFORE using the `placeee` call.
 
-**`generatedns` request**
+**`generatedns` request PRIOR TO 15 MARCH 2017**
 
 Must use `POST` method
 
@@ -35,9 +35,45 @@ Must use `POST` method
 	<?xml version="1.0"?>
 	<response>
 		<success>EE DNS</success>
-		<add_dns_entry_to>domain.com</add_dns_entry_to>
+		<add_dns_entry_to>[domain.com]</add_dns_entry_to>
 		<cname>[computedstring].domain.com</cname>
 		<point_to>[computed_datestamp].domain.com</point_to>
+	</response>
+	
+**`generatedns` request AFTER 15 MARCH 2017**
+
+Must use `POST` method. The returned `dns_string` should be added to the domain DNS as a TXT record.
+
+`https://api2.servertastic.com/order/generatedns`
+
+`'api_key'=>'[Your API Key]'`
+`'csr' => '[Valid CSR that will be used during place]'`
+
+**`generatedns` response**
+
+	<?xml version="1.0"?>
+	<response>
+		<success>EE DNS</success>
+		<add_dns_entry_to>[domain.com]</add_dns_entry_to>
+		<dns_string>[computedstring]</dns_string>
+	</response>
+	
+**`generatefile` request**
+
+Must use `POST` method. The returned `dns_string` should be added to the domain DNS as a TXT record.
+
+`https://api2.servertastic.com/order/generatedns`
+
+`'api_key'=>'[Your API Key]'`
+`'csr' => '[Valid CSR that will be used during place]'`
+
+**`generatefile` response**
+
+	<?xml version="1.0"?>
+	<response>
+  		<success>EE FILE</success>
+  		<file_name>[domain.com]/.well-known/pki-validation/fileauth.htm</file_name>
+  		<file_content>[computedstring]</file_content>
 	</response>
 
 ###`placeee`
@@ -80,6 +116,7 @@ Field | Description
 `admin_contact_phone` |  Customer Admin Contact
 `admin_contact_email` |  Customer Admin Contact
 `admin_contact_title` |  Customer Admin Contact
+`ee_type` | `DNS` or `FILE`
 	
 	
 ##Further Field Definitions
