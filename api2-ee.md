@@ -54,7 +54,7 @@ Must use `POST` method. The returned `dns_string` should be added to the domain 
 	<?xml version="1.0"?>
 	<response>
 		<success>EE DNS</success>
-		<dns_string>[computedstring]</dns_string>
+		<dv_auth_dns_string>[computedstring]</dv_auth_dns_string>
 	</response>
 	
 **`generatefile` request**
@@ -71,8 +71,7 @@ Must use `POST` method.
 	<?xml version="1.0"?>
 	<response>
   		<success>EE FILE</success>
-  		<file_name>[domain.com]/.well-known/pki-validation/fileauth.htm</file_name>
-  		<file_content>[computedstring]</file_content>
+  		<dv_auth_file_contents>[computedstring]</dv_auth_file_contents>
 	</response>
 
 ###`placeee`
