@@ -42,7 +42,7 @@ Must use `POST` method
 	
 **`generatedns` request AFTER 15 MARCH 2017**
 
-Must use `POST` method. The returned `dns_string` should be added to the domain DNS as a TXT record.
+Must use `POST` method. The returned `dv_auth_dns_string` should be added to the domain DNS as a TXT record.
 
 `https://api2.servertastic.com/order/generatedns`
 

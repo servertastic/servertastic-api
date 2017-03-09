@@ -164,9 +164,27 @@ This API call supports both the `POST` and `GET` method. If you are supplying a 
 ####SSL Products
 All orders can pass a `csr` or the API can create one using the organisation, admin contact email and `domain_name` fields. If the `csr` is to be supplied, it can only be sent using the `POST` method. If you do not supply the `csr` and instead supply only the `domain_name` then the `csr` and `private_key` will be returned in the success response. But for security reasons, this information is not stored and cannot be retrieved at a later time.
 
-Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE` and `DNS`. The `FILE` option requires a FILE to be placed on the server with a specific name and specific contents. The `DNS` authentication method requires a user to create a CNAME record in this format:
-                                        
-`s<randomstring>.domain.com` (randomstring is returned in the API response) and pointed to a timestamped entry in the format `s<YYYYMMddHHmmss>.domain.com` where the timestamp is the current time and date.
+Domain validated orders can be approved in three ways, `EMAIL` (default), `FILE` and `DNS`. 
+
+**`EMAIL` Authentication**
+
+You must provide a valid email from the `approverlist` to use as an authentication.
+
+**`FILE` Authentication**
+
+The `file_contents` must be placed within `file_name` on your domain.
+
+__AFTER 15 MARCH 2017__
+
+The `dv_auth_file_contents` must be hosted on the domain at `/.well-known/pki-validation/fileauth.txt`
+
+**`DNS` Authentication**
+
+`s<randomstring>.domain.com` (randomstring is returned in the API response as <dns_string>) and pointed to a timestamped entry in the format `s<YYYYMMddHHmmss>.domain.com` where the timestamp is the current time and date.
+
+__AFTER 15 MARCH 2017__
+
+The `dv_auth_dns_string` must be placed in a TXT record on the domain.
 
 **`place` order request**
 
