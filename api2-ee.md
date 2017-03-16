@@ -1,4 +1,4 @@
-#API documentation for Encryption Everywhere Resellers
+# API documentation for Encryption Everywhere Resellers
 
 * [About Encryption Everywhere Program](https://www.servertastic.com/encryption-everywhere/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
@@ -16,9 +16,9 @@ Test API Endpoint: `https://test-api2.servertastic.com`
 
 Whitelabel API Endpoint: `https://api2.manage.cm`
 
-##EE API Calls
+## EE API Calls
 
-###`generatedns`
+### `generatedns`
 This call is used for Encryption Everywhere resellers to obtain the required DNS string BEFORE using the `placeee` call.
 
 **`generatedns` request PRIOR TO 15 MARCH 2017**
@@ -29,18 +29,6 @@ Must use `POST` method
 
 `'api_key'=>'[Your API Key]'`
 `'csr' => '[Valid CSR that will be used during place]'`
-
-**`generatedns` response**
-
-	<?xml version="1.0"?>
-	<response>
-		<success>EE DNS</success>
-		<add_dns_entry_to>[domain.com]</add_dns_entry_to>
-		<cname>[computedstring].domain.com</cname>
-		<point_to>[computed_datestamp].domain.com</point_to>
-	</response>
-	
-**`generatedns` request AFTER 15 MARCH 2017**
 
 Must use `POST` method. The returned `dv_auth_dns_string` should be added to the domain DNS as a TXT record.
 
@@ -57,6 +45,8 @@ Must use `POST` method. The returned `dv_auth_dns_string` should be added to the
 		<dv_auth_dns_string>[computedstring]</dv_auth_dns_string>
 	</response>
 	
+### `generatefile`
+
 **`generatefile` request**
 
 Must use `POST` method.
@@ -74,7 +64,7 @@ Must use `POST` method.
   		<dv_auth_file_contents>[computedstring]</dv_auth_file_contents>
 	</response>
 
-###`placeee`
+### `placeee`
 
 The `placeee` call is used to place an EE order. The DNS String must have been added to the domain BEFORE you use this call.
 
@@ -94,7 +84,7 @@ It is important to use the actual end customer details for tech and admin contac
 <intermediate></intermediate>
 </response>
 
-##Required Fields
+## Required Fields
 
 Field | Description
 :--|:--
@@ -117,9 +107,9 @@ Field | Description
 `ee_type` | `DNS` or `FILE`
 	
 	
-##Further Field Definitions
+## Further Field Definitions
 
-###Encryption Everywhere Products
+### Encryption Everywhere Products
 
 Product Code | Product Description | Server Count Values | SAN Values | Type
 :--|:--|:--|:--|:--
