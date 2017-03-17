@@ -1,8 +1,13 @@
 # Servertastic APIv2 Documentation
 
+* [APIv2 Documentation](/api2.md)
+* [Encryption Everywhere API](/api2-ee.md)
+* [Previous API Documentation](/api.md)
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
-* [Servertastic Support](https://support.servertastic.com)
+* [Servertastic Support](https://www.servertastic.com/support)
+
+If you have issues with the API documentation please feel free to raise an issue in GitHub or email <team@servertastic.com>
 
 The Servertastic APIv2 contains improvements over our first API. This opens up the API to all customers and not just resellers. Furture enhancements will only be made to APIv2.
 
@@ -25,7 +30,7 @@ resellers to place, review and manage their orders.
 	* [Test Environment](#test-environment)
 	* [Example Usage](#example-usage)
 	* [Invite Routine](#invite-routine)
-	* [Encryption Everywhere] (#encryption-everywhere)
+	* [Encryption Everywhere](#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
 	* [`place`](#place)
 	* [`review`](#review)

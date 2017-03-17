@@ -2,9 +2,14 @@
 
 **This API is being deprecated. Please refer to our [APIv2 Documentation](/api2.md)**
 
+* [APIv2 Documentation](/api2.md)
+* [Encryption Everywhere API](/api2-ee.md)
+* [Previous API Documentation](/api.md)
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
-* [Servertastic Support](https://support.servertastic.com)
+* [Servertastic Support](https://www.servertastic.com/support)
+
+If you have issues with the API documentation please feel free to raise an issue in GitHub or email <team@servertastic.com>
 
 ## Target Audience
 The target audience for this document are Servertastic resellers, or
