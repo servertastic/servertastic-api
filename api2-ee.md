@@ -26,7 +26,7 @@ Whitelabel API Endpoint: `https://api2.manage.cm`
 ### `generatedns`
 This call is used for Encryption Everywhere resellers to obtain the required DNS string BEFORE using the `placeee` call.
 
-**`generatedns` request PRIOR TO 15 MARCH 2017**
+**`generatedns` request**
 
 Must use `POST` method
 
