@@ -32,7 +32,9 @@ resellers to place, review and manage their orders.
 	* [Invite Routine](#invite-routine)
 	* [Encryption Everywhere](#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
+	* [`generateToken`](#generatetoken)
 	* [`place`](#place)
+	* [`productfields`](#productfields)
 	* [`review`](#review)
 	* [`cancel`](#cancel)
 	* [`resendemail`](#resendemail)
@@ -42,7 +44,6 @@ resellers to place, review and manage their orders.
 	* [`approverlist`](#approverlist)
 	* [`changeauthmethod`](#changeauthmethod)
 	* [`pollauth`](#pollauth)
-	* [`generateToken`](#generatetoken)
 	* [`showTokens`](#showtokens)
 	* [`advanceorder`](#advanceorder)
 * [Account Web Service Details](#account-web-service-details)
@@ -282,6 +283,233 @@ The response details license information for the Bundle or product which can be 
 	                <license_key></license_key>
 	        </license>
 	  </order_licenses>
+	</response>
+
+### `productfields`
+
+`https://api2.servertastic.com/order/productfields?order_token=[current order_token]`
+
+The `productfields` call allows you to obtain a list of all the fields that are required for a particular order. This is presented in in a way that allows you to determine which fields are required and which are optional. You can use this call to build the relevent `place` call to our API.
+
+If a field is required it will a boolean state of true for *required*.
+
+Some fields have defined options. These will be returned as an array within *options*.
+
+Some fields may not be required. However the *required_if* will state that the field will be required if these fields are supplied or an ! will indicate the field is required if that field is not supplied.
+
+For example the values below show that the domain_name is not required but it is required if the csr is not supplied.
+
+	<item>
+		<domain_name>
+			<required/>
+			<input_type>text</input_type>
+			<options/>
+			<required_if>!csr</required_if>
+		</domain_name>
+	</item>
+	
+Finally the *input_type* is designed to provide assistance when dynamically building forms for your orders. This indicates the type of field that should be requested.
+
+**`productfields` order response**
+
+	<?xml version="1.0"?>
+	<response>
+	  <item>RapidSSL-12</item>
+	  <item>RapidSSL: RapidSSL - 1 Year</item>
+	  <item>
+	    <order_token>
+	      <required>1</required>
+	      <input_type>hidden</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </order_token>
+	  </item>
+	  <item>
+	    <approver_email_address>
+	      <required>1</required>
+	      <input_type>email</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </approver_email_address>
+	  </item>
+	  <item>
+	    <tech_contact_first_name>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </tech_contact_first_name>
+	  </item>
+	  <item>
+	    <tech_contact_last_name>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </tech_contact_last_name>
+	  </item>
+	  <item>
+	    <tech_contact_phone>
+	      <required>1</required>
+	      <input_type>tel</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </tech_contact_phone>
+	  </item>
+	  <item>
+	    <tech_contact_email>
+	      <required>1</required>
+	      <input_type>email</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </tech_contact_email>
+	  </item>
+	  <item>
+	    <tech_contact_title>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </tech_contact_title>
+	  </item>
+	  <item>
+	    <admin_contact_first_name>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </admin_contact_first_name>
+	  </item>
+	  <item>
+	    <admin_contact_last_name>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </admin_contact_last_name>
+	  </item>
+	  <item>
+	    <admin_contact_phone>
+	      <required>1</required>
+	      <input_type>tel</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </admin_contact_phone>
+	  </item>
+	  <item>
+	    <admin_contact_email>
+	      <required>1</required>
+	      <input_type>email</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </admin_contact_email>
+	  </item>
+	  <item>
+	    <admin_contact_title>
+	      <required>1</required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if></required_if>
+	    </admin_contact_title>
+	  </item>
+	  <item>
+	    <domain_name>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>!csr</required_if>
+	    </domain_name>
+	  </item>
+	  <item>
+	    <csr>
+	      <required></required>
+	      <input_type>textarea</input_type>
+	      <options></options>
+	      <required_if>!domain_name</required_if>
+	    </csr>
+	  </item>
+	  <item>
+	    <renewal>
+	      <required></required>
+	      <input_type>checkbox</input_type>
+	      <options>0</options>
+	      <options>1</options>
+	      <required_if></required_if>
+	    </renewal>
+	  </item>
+	  <item>
+	    <competitive_upgrade>
+	      <required></required>
+	      <input_type>checkbox</input_type>
+	      <options>0</options>
+	      <options>1</options>
+	      <required_if></required_if>
+	    </competitive_upgrade>
+	  </item>
+	  <item>
+	    <dv_auth_method>
+	      <required>1</required>
+	      <input_type>select</input_type>
+	      <options>EMAIL</options>
+	      <options>FILE</options>
+	      <options>DNS</options>
+	      <required_if></required_if>
+	    </dv_auth_method>
+	  </item>
+	  <item>
+	    <hashing_algorithm>
+	      <required>1</required>
+	      <input_type>select</input_type>
+	      <options>SHA-256</options>
+	      <options>SHA-256-FULL-CHAIN</options>
+	      <required_if></required_if>
+	    </hashing_algorithm>
+	  </item>
+	  <item>
+	    <org_name>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>domain_name</required_if>
+	      <required_if>!csr</required_if>
+	    </org_name>
+	  </item>
+	  <item>
+	    <org_division>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>domain_name</required_if>
+	      <required_if>!csr</required_if>
+	    </org_division>
+	  </item>
+	  <item>
+	    <org_address_city>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>domain_name</required_if>
+	      <required_if>!csr</required_if>
+	    </org_address_city>
+	  </item>
+	  <item>
+	    <org_address_region>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>domain_name</required_if>
+	      <required_if>!csr</required_if>
+	    </org_address_region>
+	  </item>
+	  <item>
+	    <org_address_country>
+	      <required></required>
+	      <input_type>text</input_type>
+	      <options></options>
+	      <required_if>domain_name</required_if>
+	      <required_if>!csr</required_if>
+	    </org_address_country>
+	  </item>
 	</response>
 
 ### `review`
