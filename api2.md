@@ -1,7 +1,6 @@
 # Servertastic APIv2 Documentation
 
 * [APIv2 Documentation](/api2.md)
-* [Encryption Everywhere API](/api2-ee.md)
 * [Previous API Documentation](/api.md)
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
@@ -30,7 +29,6 @@ resellers to place, review and manage their orders.
 	* [Test Environment](#test-environment)
 	* [Example Usage](#example-usage)
 	* [Invite Routine](#invite-routine)
-	* [Encryption Everywhere](#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
 	* [`generateToken`](#generatetoken)
 	* [`place`](#place)

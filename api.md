@@ -3,7 +3,6 @@
 **This API is being deprecated. Please refer to our [APIv2 Documentation](/api2.md)**
 
 * [APIv2 Documentation](/api2.md)
-* [Encryption Everywhere API](/api2-ee.md)
 * [Previous API Documentation](/api.md)
 * [About Servertastic Reseller Program](https://www.servertastic.com/resellers/)
 * [Reseller Dashboard](https://reseller.servertastic.com)
@@ -24,7 +23,6 @@ resellers to place, review and manage their orders.
 	* [Test Environment](#test-environment)
 	* [Example Usage](#example-usage)
 	* [Invite Routine](#invite-routine)
-	* [Encryption Everywhere](#encryption-everywhere)
 * [Order Web Service Details](#order-web-service-details)
 	* [`place`](#place)
 	* [`review`](#review)
@@ -121,9 +119,6 @@ The place call in the Order web service now allows information to be posted to t
 	
 ### Invite Routine
 When placing an order an invite link is generated. This link can be used to either complete the order and/or view the current status of the order.
-
-### Encryption Everywhere
-Please refer to [EE Documentation](/api2-ee.md)
 
 ## Order Web Service Details
 
