@@ -1013,6 +1013,7 @@ This call returns all the products available through the reseller system, along 
 	   <max_server_count></max_server_count>
 	   <min_san_count></min_san_count>
 	   <max_san_count></max_san_count>
+	   <product_validation></product_validation>
 	   <base_san_points></base_san_points>
 	   <product_points></product_points>
 	  </products>
@@ -1030,6 +1031,15 @@ Product Code | Product Description | Server Count Values | SAN Values | Type
 `RapidSSLWildcard-12` | RapidSSL Wildcard - 1 Years | Not Applicable | Not Applicable | DV
 `RapidSSLWildcard-24` | RapidSSL Wildcard - 2 Years | Not Applicable | Not Applicable | DV
 `RapidSSLWildcard-36` | RapidSSL Wildcard - 3 Years | Not Applicable | Not Applicable | DV
+
+### Comodo
+
+Product Code | Product Description | Server Count Values | SAN Values | Type
+:--|:--|:--|:--|:--
+`PositiveSSL-12` | PositiveSSL - 1 Years | Not Applicable | Not Applicable | DV
+`PositiveSSL-24` | PositiveSSL - 2 Years | Not Applicable | Not Applicable | DV
+`PositiveSSLWildcard-12` | PositiveSSL Wildcard - 1 Years | Not Applicable | Not Applicable | DV
+`PositiveSSLWildcard-24` | PositiveSSL Wildcard - 2 Years | Not Applicable | Not Applicable | DV
 
 ### Geotrust
 
@@ -1054,12 +1064,12 @@ Product Code | Product Description | Server Count Values | SAN Values | Type
 `TrueBizIDMD-36` | True Business ID with SAN - 3 Years | Not Applicable | 4-24 | OV
 `TrueBizIDEVMD-12` | True BusinessID with EV with SAN - 1 Years | Not Applicable | 4-24 | EV
 `TrueBizIDEVMD-24` | True BusinessID with EV with SAN - 2 Years | Not Applicable | 4-24 | EV
-`AntiMalwareBasic-12` | Geotrust Anti-Malware Scan Basic - 1 Years | Not Applicable | Not Applicable | NA
-`AntiMalwareBasic-24` | Geotrust Anti-Malware Scan Basic - 2 Years | Not Applicable | Not Applicable | NA
-`AntiMalwareBasic-36` | Geotrust Anti-Malware Scan Basic - 3 Years | Not Applicable | Not Applicable | NA
-`AntiMalware-12` | Geotrust Anti-Malware Scan - 1 Years | Not Applicable | Not Applicable | NA
-`AntiMalware-24` | Geotrust Anti-Malware Scan - 2 Years | Not Applicable | Not Applicable | NA
-`AntiMalware-36` | Geotrust Anti-Malware Scan - 3 Years | Not Applicable | Not Applicable | NA
+`AntiMalwareBasic-12` | Geotrust Anti-Malware Scan Basic - 1 Years | Not Applicable | Not Applicable | DV
+`AntiMalwareBasic-24` | Geotrust Anti-Malware Scan Basic - 2 Years | Not Applicable | Not Applicable | DV
+`AntiMalwareBasic-36` | Geotrust Anti-Malware Scan Basic - 3 Years | Not Applicable | Not Applicable | DV
+`AntiMalware-12` | Geotrust Anti-Malware Scan - 1 Years | Not Applicable | Not Applicable | DV
+`AntiMalware-24` | Geotrust Anti-Malware Scan - 2 Years | Not Applicable | Not Applicable | DV
+`AntiMalware-36` | Geotrust Anti-Malware Scan - 3 Years | Not Applicable | Not Applicable | DV
 - When purchasing a TrueBizID Multidomain product the price includes the first four SANs.
 - When purchasing a QuickSSL Premium Multi Domain the price includes 4 SANs.
 
@@ -1077,9 +1087,6 @@ Product Code | Product Description | Server Count Values | SAN Values | Type
 `SecureSitePro-36` | Secure Site Pro - 3 Years | 1 - 500 | 0-24 | OV
 `SecureSiteProEV-12` | Secure Site Pro with EV - 1 Years | 1 - 500 | 0-24 | EV
 `SecureSiteProEV-24` | Secure Site Pro with EV - 2 Years | 1 - 500 | 0-24 | EV
-`SymantecSafeSite-12` | Symantec Safe Site - 1 Years | Not Applicable | Not Applicable | NA
-`SymantecSafeSite-24` | Symantec Safe Site - 2 Years | Not Applicable | Not Applicable | NA
-`SymantecSafeSite-36` | Symantec Safe Site - 3 Years | Not Applicable | Not Applicable | NA
 
 ### Thawte
 
