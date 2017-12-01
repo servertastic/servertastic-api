@@ -43,6 +43,7 @@ resellers to place, review and manage their orders.
 	* [`changeauthmethod`](#changeauthmethod)
 	* [`pollauth`](#pollauth)
 	* [`showTokens`](#showtokens)
+	* [`reissue`](#reissue)
 	* [`advanceorder`](#advanceorder)
 * [Account Web Service Details](#account-web-service-details)
 	* [`regenerateapikey`](#regenerateapikey)
@@ -858,6 +859,32 @@ This call allows resellers to keep track of tokens that have been generated and 
 	        </order_token
 	  </unused_tokens>
 	</response>
+
+### `reissue`
+
+This call is to reissue an existing completed certificate. This is a POST only API call.
+
+It can be called with simply the `order_token` and the result will include a private key and any authentication will use the previously selected method.
+
+Additional fields than can be supplied include `csr`, `dv_auth_method`, `approver_email_address`, `hashing_algorithm`
+
+
+**`resissue` request**
+
+`https://api2.servertastic.com/order/reissue`
+
+**`reissue` response**
+
+<?xml version="1.0"?>
+<response>
+	 <dns_string></dns_string>
+	 <dns_name></dns_name>
+    <file_name></file_name>
+    <file_contents></file_contents>
+    <csr></csr>
+    <private_key></private_key>
+    <success></success>
+</response>
 	
 ### `advanceorder`
 
