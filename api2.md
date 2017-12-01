@@ -875,16 +875,16 @@ Additional fields than can be supplied include `csr`, `dv_auth_method`, `approve
 
 **`reissue` response**
 
-<?xml version="1.0"?>
-<response>
-	 <dns_string></dns_string>
-	 <dns_name></dns_name>
-    <file_name></file_name>
-    <file_contents></file_contents>
-    <csr></csr>
-    <private_key></private_key>
-    <success></success>
-</response>
+	<?xml version="1.0"?>
+		<response>
+		 <dns_string></dns_string>
+		 <dns_name></dns_name>
+	    <file_name></file_name>
+	    <file_contents></file_contents>
+	    <csr></csr>
+	    <private_key></private_key>
+	    <success></success>
+	</response>
 	
 ### `advanceorder`
 
@@ -897,10 +897,10 @@ This call is only valid on test orders. The order maybe queued for review within
 **`advanceorder` response**
 
 	<?xml version="1.0"?>
-	<response>
-		<success>
-		Order was pushed. Please wait up to 3 minutes for the status to update - STR_1_201611071123
-		</success>
+		<response>
+			<success>
+			Order was pushed. Please wait up to 3 minutes for the status to update - STR_1_201611071123
+			</success>
 	</response>
 
 ## Account Web Service Details
