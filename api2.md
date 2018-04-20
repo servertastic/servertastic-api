@@ -14,8 +14,6 @@ API Endpoint: `https://api2.servertastic.com`
 
 Test API Endpoint: `https://test-api2.servertastic.com`
 
-Whitelabel API Endpoint: `https://api2.manage.cm`
-
 ## Target Audience
 The target audience for this document are Servertastic resellers, or
 developers working on their behalf. This document gives an overview
