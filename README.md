@@ -1,4 +1,6 @@
-# Servertastic API Documentation
+# SERVERTASTIC API DOCUMENTATION HAS MOVED
+
+[CLICK HERE](https://dev.servertastic.com) for the latest documentation. This is no longer maintained.
 
 * [APIv2 Documentation](/api2.md)
 * [Previous API Documentation](/api.md)
